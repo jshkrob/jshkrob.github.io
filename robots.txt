@@ -1,4 +1,4 @@
-Sitemap: https://scoste.fr/sitemap.xml
+Sitemap: https://jshkrob.github.io/sitemap.xml
 
 User-agent: *
 Disallow:

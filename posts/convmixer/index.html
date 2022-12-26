@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="/myWebsite/libs/katex/katex.min.css">
+   <link rel="stylesheet" href="/libs/katex/katex.min.css">
      
-   <link rel="stylesheet" href="/myWebsite/libs/highlight/github.min.css">
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
    
-  <link rel="stylesheet" href="/myWebsite/css/franklin.css">
-<link rel="stylesheet" href="/myWebsite/css/poole_hyde.css">
+  <link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/poole_hyde.css">
 <!-- style adjustments -->
 <style>
   html {font-size: 17px;}
@@ -20,7 +20,7 @@
     .franklin-content {padding-left: 6%; padding-right: 6%;}
   }
 </style>
-<link rel="icon" href="/myWebsite/assets/rndimg.jpg">
+<link rel="icon" href="/assets/rndimg.jpg">
 
 
    <title>A ConvMixer architecture: 🤷</title> 
@@ -32,15 +32,15 @@
   
     <div class="sidebar-about">
 
-      <h1><a class="sidebar-about" href="/myWebsite/">Jacob Shkrob</a></h1>
+      <h1><a class="sidebar-about" href="/">Jacob Shkrob</a></h1>
       <p class="sidebar-about">Mathematics PhD Student @ NYU</p>
     </div>
 
     <nav class="sidebar-nav">
-      <a class="sidebar-nav-item " href="/myWebsite/">About</a>
-      <a class="sidebar-nav-item " href="/myWebsite/research/">Research</a>
-      <a class="sidebar-nav-item " href="/myWebsite/notes/">Notes</a>
-      <a class="sidebar-nav-item " href="/myWebsite/other/">Other</a>
+      <a class="sidebar-nav-item " href="/">About</a>
+      <a class="sidebar-nav-item " href="/research/">Research</a>
+      <a class="sidebar-nav-item " href="/notes/">Notes</a>
+      <a class="sidebar-nav-item " href="/other/">Other</a>
 
     </nav>
 
@@ -64,7 +64,7 @@
 <p>In computer vision, <strong>Residual Networks</strong> &#40;ResNets&#41; are an important and successful architecture; beating the performance of deep ResNets on image classification tasks like ImageNet remains a noticeable achievement. In natural language processing, <strong>Transformers</strong> play the same role and are now widely used and studied, especially through Bert-like architectures. </p>
 <p>Residual networks are mostly based on <em>convolutions</em>; that is, they transform images by applying local filters, and they combine these convolutions in various way. On the other hand, Transformers are based on <em>attention mechanisms</em>: they consider words in sentences as elementary units and learn which ones are the most important. Using attention mechanisms in vision successfully led to <strong>Vision Transformers</strong>, but it is not clear why they perform well; in trying to understand this, a few purely-convolutional architectures emerged, who reached very good performances while at the same time being really simpler than ResNets.  </p>
 <p>The goal of this post is to show one of these architectures, <em>ConvMixer</em>, implemented with Julia&#39;s <a href="https://fluxml.ai/Flux.jl/stable/">Flux</a> machine learning library. </p>
-<p><img src="/myWebsite/posts/img/logo.png" alt="flux" /></p>
+<p><img src="/posts/img/logo.png" alt="flux" /></p>
 <p><hr /> </p>
 <div class="franklin-toc"><ol><li><a href="#overview_vision_transformers_and_the_role_of_patches">Overview: Vision Transformers and the role of patches</a></li><li><a href="#build_the_mixer">Build the mixer</a></li><li><a href="#train_the_mixer">Train the mixer </a></li><li><a href="#im_not_a_code_golfer">I&#39;m not a code golfer</a></li><li><a href="#julias_flux_library">Julia&#39;s Flux library</a></li><li><a href="#references_the_paper_title_competition">References: the Paper Title Competition</a></li></ol></div>
 <hr />
@@ -77,7 +77,7 @@
 <p>Let&#39;s build the architecture. All the basic blocks &#40;convolutions, nonlinearities, batch normalizations, mean pooling and dense layers&#41; are natively available in Flux, we only have to assemble them. The input of our architecture will be a batch of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> images of size <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>32</mn><mo>×</mo><mn>32</mn></mrow><annotation encoding="application/x-tex">32 \times 32</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">2</span></span></span></span> with three &#40;RGB&#41; channels, hence the input dimension is </p>
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mn>32</mn><mo separator="true">,</mo><mn>32</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">(32, 32, 3, B).</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">3</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mord">.</span></span></span></span></span>
 <p>The architecture of ConvMixer can be summarized in the following picture, taken from the paper: </p>
-<p><img src="/myWebsite/posts/img/convmixerarchi.png" alt="" /></p>
+<p><img src="/posts/img/convmixerarchi.png" alt="" /></p>
 <p>Let&#39;s decompose it block by block.</p>
 <h3 id="chain"><a href="#chain" class="header-anchor">Chain</a></h3>
 <p>In Flux, the basic way to compose layers is <code>Chain</code>, the equivalent of Torch&#39;s <code>nn.Sequential</code>. There&#39;s nothing more to say. </p>
@@ -253,13 +253,13 @@
 </ol>
 <h3 id="training_curves"><a href="#training_curves" class="header-anchor">Training curves</a></h3>
 <p>Most of the training time was spent overfitting with few improvement in the generalization error. </p>
-<p><img src="/myWebsite/posts/img/fig.png" alt="" /></p>
+<p><img src="/posts/img/fig.png" alt="" /></p>
 <p>After 200 training epochs on batches of size 128, I got a labelling accuracy of 74&#37;. <strong>That&#39;s bad</strong>, but I underoptimised nearly everything: no augmentations on the dataset, no optimiser parameter scheduler, and a pretty small network.  For reference, the best performances on CIFAR are above 95&#37;; the best ConvMixer performance seems close to 97&#37; &#40;with 1.3 million parameters&#41;. </p>
 <h2 id="im_not_a_code_golfer"><a href="#im_not_a_code_golfer" class="header-anchor">I&#39;m not a code golfer</a></h2>
 <p>The authors of the ConvMixer paper argue that their architecture is as powerful as ResNets or ConViT high-performance models without any hyperparameter tuning, but the conceptual complexity of the model is considerably simpler: in fact, it is simplistic enough to fit in one tweet, ie less than 280 characters when implemented with the PyTorch framework. </p>
-<p><img src="/myWebsite/posts/img/convmixer_singletweet.png " alt="a single tweet" /></p>
+<p><img src="/posts/img/convmixer_singletweet.png " alt="a single tweet" /></p>
 <p>This implies a little bit of <a href="https://en.wikipedia.org/wiki/Code_golf">code golf</a> cheating. In Julia, you can fit everything in a single tweet, <code>using Flux</code> included, in 272 characters without even needing to golf your functions names: </p>
-<p><img src="/myWebsite/posts/img/carbon.png " alt="even better" /></p>
+<p><img src="/posts/img/carbon.png " alt="even better" /></p>
 <p>The code is here &#40;with spaces&#41;:</p>
 <blockquote>
 <code>ConvMixer&#40;k,p,h,N&#41; &#61; Chain&#40;Conv&#40;&#40;p,p&#41;, 3&#61;&gt;h, gelu;stride&#61;p&#41;, BatchNorm&#40;h&#41;, &#91;Chain&#40;SkipConnection&#40;Chain&#40;Conv&#40;&#40;k,k&#41;,h&#61;&gt;h,gelu;pad&#61;SamePad&#40;&#41;,groups&#61;1&#41;, Batchnorm&#40;h&#41;&#41;,&#43;&#41;, Chain&#40;Conv&#40;&#40;1,1&#41;,h&#61;&gt;h,gelu&#41;, BatchNorm&#40;h&#41;&#41;&#41; for i in 1:D&#93;..., AdaptiveMeanPool&#40;&#40;1,1&#41;&#41;, flatten, Dense&#40;h,N&#41;&#41;</code>
