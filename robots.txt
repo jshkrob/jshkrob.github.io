@@ -1,4 +1,4 @@
-Sitemap: https://jshkrob.github.io/sitemap.xml
+Sitemap: jshkrob.github.io/sitemap.xml
 
 User-agent: *
 Disallow:
