@@ -4,9 +4,9 @@ website.
 The website_* must be defined for the RSS to work
 -->
 @def website_title = "Jacob Shkrob"
-@def website_url   = "https://scoste.fr"
+@def website_url   = "jshkrob.github.io"
 @def site_synopsis = "Mathematics PhD Student @ NYU"
-@def prepath = "myWebsite"
+@def prepath = "site"
 
 @def author = "Jacob Shkrob"
 @def hascode = true
