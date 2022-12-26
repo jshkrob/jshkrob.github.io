@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<url>
+    <loc>https://scoste.fr/research/index.html</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/posts/post1/index.html</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/other/proba/index.html</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/posts/post2/index.html</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/other/statagreg/index.html</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/posts/derp/index.html</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/notes/index.html</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/index.html</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/posts/convmixer/index.html</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/other/index.html</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/404/index.html</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/talks/isis/index/</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/talks/larema/index/</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/talks/mas2022/index/</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/talks/mega21/index/</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://scoste.fr/talks/mas2020/index/</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+</urlset>
