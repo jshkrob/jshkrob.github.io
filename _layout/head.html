@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{if hasmath}} {{insert head_katex.html }}     {{end}}
+  {{if hascode}} {{insert head_highlight.html }}   {{end}}
+  {{insert style.html}}
+  {{isdef titlepost}} <title>{{fill titlepost}}</title> {{else}} <title>{{fill title}}</title> {{end}}
+
+</head>
+<body>
+{{insert sidebar.html}}
+<!-- Content appended here -->
+
+{{isdef titlepost}}
+<div class="franklin-content">
+  {{isdef date}} <h1 class="page-title"> {{fill titlepost}} </h1> {{end}}
+  {{isdef date}} <span class="page-date"> {{fill date}} </span> {{end}}
+</div>
+{{end}}
