@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="/libs/katex/katex.min.css">
+     
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+   
+  <link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/poole_hyde.css">
+<!-- style adjustments -->
+<style>
+  html {font-size: 17px;}
+  .franklin-content {position: relative; padding-left: 8%; padding-right: 5%; line-height: 1.35em;}
+  @media (min-width: 940px) {
+    .franklin-content {width: 100%; margin-left: auto; margin-right: auto;}
+  }
+  @media (max-width: 768px) {
+    .franklin-content {padding-left: 6%; padding-right: 6%;}
+  }
+</style>
+<link rel="icon" href="/assets/rndimg.jpg">
+
+
+   <title>Inverse visualization for the elliptic law</title> 
+
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+  
+    <div class="sidebar-about">
+
+      <h1><a class="sidebar-about" href="/">Jacob Shkrob</a></h1>
+      <p class="sidebar-about">Mathematics PhD Student @ NYU</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item " href="/">About</a>
+      <a class="sidebar-nav-item " href="/research/">Research</a>
+      <a class="sidebar-nav-item " href="/notes/">Notes</a>
+      <a class="sidebar-nav-item " href="/other/">Other</a>
+
+    </nav>
+
+    <div class="sidebar-foot">
+      <p>&copy; Jacob Shkrob, modified: December 26, 2022. <br> Built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language. </a></p>
+    </div>
+
+
+  </div>
+</div>
+<div class="content container">
+
+<!-- Content appended here -->
+
+
+<div class="franklin-content">
+   <h1 class="page-title"> Inverse visualization for the elliptic law </h1> 
+   <span class="page-date"> March 2021 </span> 
+</div>
+<div class="franklin-content">
+<p>Here are two nice facts on spectra of random matrices of large size \(n\). </p>
+<ul>
+<li><p>When \(A\) is a Girko matrix, the eigenvalues of \(A/\sqrt{n}\) asymptotically follow the <a href="https://en.wikipedia.org/wiki/Circular_law">circular law</a> – they tend to be uniformly distributed in \(\mathbb{D} = D(0,1)\). By <strong>Girko matrix</strong>, I mean a matrix where all the entries are iid real<sup id="fnref:1"><a href="#fndef:1" class="fnref">[1]</a></sup> random variables, centered, with variance 1. </p>
+</li>
+<li><p>When \(A\) is a Wigner matrix, the eigenvalues of \(A/\sqrt{n}\) asymptotically follow a <a href="https://en.wikipedia.org/wiki/Wigner_semicircle_distribution">semi-circle law</a>, and in particular they are real. By <strong>Wigner matrix</strong>, I mean a symmetric matrix where all the entries on and above the diagonal are iid real random variables, centered, with variance 1. </p>
+</li>
+</ul>
+<p>What happens in between lies in the <strong>elliptic</strong> realm.  If \(A\) is a Wigner matrix, the symmetry of \(A\) is indeed equivalent to \(A\) being maximally correlated with its own transpose \(A^*\), since they are equal. One can thus create intermediary models between Girko and Wigner, by parametrizing the degree of correlation above and below the diagonal: for this, we just take \(A\) to be a fully independent matrix &#40;Girko&#41;, and set</p>
+\[X_\rho = A + \rho A^*.\]
+<p>The matrix \(X_0 = A\) is a Girko matrix; the matrix \(X_1 = A + A^*\) is a symmetric matrix and the matrix \(X_{-1} = A - A^*\) it is an antisymmetric matrix. In \(X_\rho\), the entries above and below the diagonal are correlated, in that if \(i \neq j\), </p>
+\[ \mathrm{Cov}((X_\rho)_{i,j},(X_\rho)_{i,j}) = 2\rho\mathrm{Var}(A_{i,j})  = 2\rho.\]
+<p>It turns out that the eigenvalues of \(X_\rho\) asymptotically <a href="https://arxiv.org/abs/1201.1639">follow the elliptic distribution</a>: they tend to be uniformly distributed inside an ellipse, ie the domain defined by</p>
+\[ \frac{\mathrm{Real}(z)^2}{(1 + \rho)^2} + \frac{\mathrm{Imag}(z)^2}{(1 - \rho)^2} \leqslant 1. \]
+<p>The animated picture below is an illustration of this phenomenon, as seen from \(\infty\).  <img src="/posts/img/elliptic.gif" alt="elliptic law" /></p>
+<p>For several correlation parameters, I represented the <a href="https://en.wikipedia.org/wiki/Domain_coloring">phase portrait</a> of the reciprocical of the characteristic determinant, </p>
+\[ q_n(z)=\det(I - zX_\rho / \sqrt{n})\]
+<p>as a complex function; the white dots are the inverses of the eigenvalues of \(X_\rho/\sqrt{n}\), and the white line is the inverse of the ellipse.</p>
+<h2 id="polynomial_convergence"><a href="#polynomial_convergence" class="header-anchor">Polynomial convergence</a></h2>
+<p>The complex polynomial \(q_n\) has degree \(n\). Its &#40;complex&#41; roots are the inverses of the &#40;complex&#41; eigenvalues of \(A/\sqrt{n}\). The central picture in the preceding animation, with \(\rho=0\), illustrates a convergence phenomenon regarding \(q_n\), which recently appeared in <a href="https://arxiv.org/abs/2012.05602">a beautiful paper</a> by Bordenave, Chafaï and García-Zelada.</p>
+<p>They showed that if \(A\) is a real Girko matrix entries centered and reduced, then</p>
+<a id="main" class="anchor"></a>\[
+q_n \xrightarrow[n \to \infty]{\mathrm{law}} \kappa \mathrm{e}^{-F} \]
+<p>where \(\kappa, F\) are holomorphic functions; \(\kappa\) is deterministic, </p>
+\[\kappa(z) = \sqrt{1 - z^2}, \]
+<p>while \(F\) is itself a random function, </p>
+\[ F(z) = \sum_{\ell = 1}^\infty X_\ell \frac{z^\ell}{\sqrt{\ell}}\]
+<p>where the \(X_\ell\) are iid standard real Gaussian random variables. The mode of convergence in <span class="eqref">(<a href="#main">5</a>)</span> is the weak convergence of probability measures on the space \(\mathbb{H}(\mathbb{D})\) – the space of holomorphic functions on the open unit disk, endowed with the classical topology of uniform convergence on compact sets. </p>
+<p>Since the limiting random function \(z \mapsto \kappa(z)\mathrm{e}^{-F(z)}\) does not vanish inside \(\mathbb{D}\), one can use results like <a href="https://en.wikipedia.org/wiki/Hurwitz&#37;27s_theorem_&#40;complex_analysis&#41;">the Hurwitz theorem</a> to show that when \(n\) is large, it is highly unlikely that \(q_n\) has a root inside \(D(0, 1-\epsilon)\) – thus proving that the eigenvalue of \(A/\sqrt{n}\) with highest modulus, say \(\lambda_1\), has \(\limsup |\lambda_1| \leqslant 1 + \epsilon\) with probability \(1-o(1)\). </p>
+<p>This is already visible in the picture corresponding to \(\rho=0\) above, even though \(n=100\) is pretty small here; the inverse eigenvalues seem to avoid the disk \(\mathbb{D}\), or be very close to its boundary. Looking at the other pictures, one would merrily suppose that a similar statement holds for every \(\rho\) between \(-1\) and \(1\), with no eigenvalue of \(X_\rho/\sqrt{n}\) being really far away outside of the ellipse boundary. </p>
+<h2 id="notes_and_references"><a href="#notes_and_references" class="header-anchor">Notes and References</a></h2>
+<p><a href="http://www.mathnet.ru/links/40ad27ac5dfd2c54a41c23e646c480f4/tvp1897.pdf">The original paper of Girko</a> on the elliptic law... in Russian.</p>
+<p><a href="https://arxiv.org/pdf/2012.05602.pdf">Convergence of the spectral radius of a random matrix through its characteristic polynomial</a>, Bordenave, Chafaï, García-Zelada. </p>
+<p><a href="https://djalil.chafai.net/blog/2018/11/04/around-the-circular-law-an-update/">Comments on the circular law</a>, a blogpost by Djalil Chafaï on open problems and recent works around the circular law.</p>
+<p><a href="https://github.com/SimonCoste/RandomPictures">My Julia code</a>  for the animated picture.</p>
+<table class="fndef" id="fndef:1">
+    <tr>
+        <td class="fndef-backref"><a href="#fnref:1">[1]</a></td>
+        <td class="fndef-content">I will stick to random matrices having real entries, but a similar picture holds with complex entries. </td>
+    </tr>
+</table>
+
+<!-- 
+  Page footer is in the sidebar. 
+ --></div><!-- CONTENT ENDS HERE -->
+    </div>  <!-- div: content container -->
+    
+        <script src="/libs/katex/katex.min.js"></script>
+<script src="/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+        <script src="/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
+    
+  </body>
+</html>

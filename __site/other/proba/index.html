@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="/libs/katex/katex.min.css">
+     
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+   
+  <link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/poole_hyde.css">
+<!-- style adjustments -->
+<style>
+  html {font-size: 17px;}
+  .franklin-content {position: relative; padding-left: 8%; padding-right: 5%; line-height: 1.35em;}
+  @media (min-width: 940px) {
+    .franklin-content {width: 100%; margin-left: auto; margin-right: auto;}
+  }
+  @media (max-width: 768px) {
+    .franklin-content {padding-left: 6%; padding-right: 6%;}
+  }
+</style>
+<link rel="icon" href="/assets/rndimg.jpg">
+
+
+   <title>Probabilités mathématiques</title> 
+
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+  
+    <div class="sidebar-about">
+
+      <h1><a class="sidebar-about" href="/">Jacob Shkrob</a></h1>
+      <p class="sidebar-about">Mathematics PhD Student @ NYU</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item " href="/">About</a>
+      <a class="sidebar-nav-item " href="/research/">Research</a>
+      <a class="sidebar-nav-item " href="/notes/">Notes</a>
+      <a class="sidebar-nav-item active" href="/other/">Other</a>
+
+    </nav>
+
+    <div class="sidebar-foot">
+      <p>&copy; Jacob Shkrob, modified: December 26, 2022. <br> Built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language. </a></p>
+    </div>
+
+
+  </div>
+</div>
+<div class="content container">
+
+<!-- Content appended here -->
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#un_ensemble_non_mesurable">Un ensemble non mesurable</a></li><li><a href="#un_ensemble_équilibré">Un ensemble équilibré</a></li><li><a href="#sur_le_volume_des_sphères_on_refait_les_calculs_vus_en_td">Sur le volume des sphères &#40;on refait les calculs vus en TD&#41;</a></li><li><a href="#petit_point_de_notation">Petit point de notation</a></li><li><a href="#exercice_sur_les_lois_conditionnelles">Exercice sur les lois conditionnelles</a></li><li><a href="#un_corrigé_de_lexercice_4_du_td_7"> Un corrigé de l&#39;exercice 4 du TD 7</a></li></ol></div>
+<h1 id="quelques_compléments_au_cours"><a href="#quelques_compléments_au_cours" class="header-anchor">Quelques compléments au cours</a></h1>
+<h2 id="un_ensemble_non_mesurable"><a href="#un_ensemble_non_mesurable" class="header-anchor">Un ensemble non mesurable</a></h2>
+<p>Un étudiant m&#39;a fait remarquer, ce lundi 12 septembre, que la tribu borélienne de \(\mathbb{R}\) n&#39;est pas égale à l&#39;ensemble des parties de \(\mathbb{R}\). C&#39;est vrai, et cela implique qu&#39;il y a des parties de \(\mathbb{R}\) qui ne sont pas boréliennes. En fait, il existe même des parties qui ne sont pas dans la tribu de Lebesgue. C&#39;est un grand classique et je ne connais pas d&#39;autre exemple que celui que je vais exposer maintenant. </p>
+<p>Pour rappel, la <a href="https://fr.wikipedia.org/wiki/Tribu_de_Lebesgue">tribu de Lebesgue</a> est la tribu contenant toutes les parties de \(\mathbb{R}\) pour lesquelles la mesure de Lebesgue peut être définie. Elle est un peu plus grosse que la tribu borélienne. On va construire un ensemble qui ne peut pas avoir de mesure de Lebesgue.</p>
+<p>On part donc de la mesure de Lebesgue sur \(\mathbb{R}\), disons \(\lambda\). On munit \(\mathbb{R}\) de la relation d&#39;équivalence suivante : </p>
+\[ x \sim y \quad \Leftrightarrow \qquad x - y \in \mathbb{Q}.\]
+<p>On note \(\mathscr{C}\) l&#39;ensemble des classes d&#39;équivalence de cette relation. On choisit exactement un représentant dans chaque classe : disons, pour une classe \(C\), on choisit un élément \(x \in C\) que l&#39;on notera dorénavant \(\tau(C)\). C&#39;est un élément de \(\mathbb{R}\). En fait, comme chaque classe \(C\) est dense dans \(\mathbb{R}\), on peut même choisir \(\tau(C)\) dans \([0,1]\). La classe \(C\) peut alors s&#39;écrire \(C = \tau(C) + \mathbb{Q}\). Enfin, on note \(E\) l&#39;ensemble des représentants choisis : </p>
+\[ E = \{ \tau(C) : C \in \mathscr{C}\}.\]
+<div class="important"><strong>Constatation choquante : </strong> l&#39;ensemble \(E\) ne peut pas avoir de mesure de Lebesgue.</div>
+<p><hr />  <em>Démonstration</em>. On commence par supposer que \(E\) possède une mesure de Lebesgue &#40;c&#39;est-à-dire, qu&#39;il est dans la tribu de Lebesgue&#41;, disons \(\lambda(E)=a\), et on va démontrer par l&#39;absurde que \(a\) ne peut pas être nul et qu&#39;il ne peut pas non plus être non nul. </p>
+<p>Commençons donc par supposer \(a=\lambda(E)=0\). </p>
+<p>Chaque nombre réel \(x \in \mathbb{R}\) peut s&#39;écrire de façon unique \(x = \tau + q\), avec \(\tau \in E\) et \(q \in \mathbb{Q}\), autrement dit </p>
+\[ \mathbb{R} = \bigcup_{q \in \mathbb{Q}}q + E\]
+<p>et les ensembles \(q+E\) sont tous disjoints. Si \(E\) était Lebesgue-mesurable, ses translatés \(q+E\) le seraient aussi, et donc en utilisant les axiomes de la mesure de Lebesgue, on aurait la chose suivante : </p>
+\[\lambda(\mathbb{R}) = \sum_{q \in \mathbb{Q}} \lambda(q+E) = \sum_{q \in \mathbb{Q}} \lambda(E) = 0, \]
+<p>ce qui est absurde. Si \(E\) possède donc une mesure de Lebesgue, elle ne peut pas être nulle : \(\lambda(E) = a >0\), éventuellement \(a=\infty\). </p>
+<p>Comme les éléments de \(E\) sont entre \(0\) et \(1\), on voit que</p>
+\[ \bigcup_{q \in \mathbb{Q}\cap [0,1]}q+E \subset [0,2]\]
+<p>ce qui implique, encore par les axiomes de la mesure de Lebesgue, que</p>
+\[\sum_{q \in \mathbb{Q}\cap [0,1]}\lambda(q+E) \leqslant \lambda([0,2]) = 2.\]
+<p>C&#39;est encore une absurdité, car \(\lambda(q+E) = \lambda(E) = a >0\), et donc la somme de gauche est égale à \(\infty\) &#40;on rappelle, à toutes fins utiles, qu&#39;il y a une infinité dénombrable de nombres rationnels entre \(0\) et \(1\)&#41;. </p>
+<p>Par conséquent, l&#39;ensemble \(E\) ne peut pas avoir de mesure de Lebesgue. Il n&#39;est pas Lebesgue-mesurable. </p>
+<hr />
+<p>Max Fathi me dit qu&#39;il y a un théorème disant essentiellement que toute construction d&#39;un ensemble non-Lebesgue-mesurable nécessite l&#39;axiome du choix &#40;que nous avons utilisé ici&#41;. Je ne connais pas ce théorème. </p>
+<h2 id="un_ensemble_équilibré"><a href="#un_ensemble_équilibré" class="header-anchor">Un ensemble équilibré</a></h2>
+<p>Le résultat suivant donne l&#39;existence d&#39;ensembles boréliens qui sont un peu partout dans \([0,1]\), mais pas <em>vraiment</em> partout. Ils seraient parfois appelés « ensembles bien équilibrés ». </p>
+<div class="important"><p>Il existe un ensemble \(A \subset [0,1]\), borélien, qui vérifie la propriété suivante : pour tout intervalle \(I\subset ]0,1[\), </p>
+\[ 0 < \lambda(A \cap I) < \lambda(I), \]
+<p>où \(\lambda\) est la mesure de Lebesgue.</p></div>
+<p>L&#39;existence de cet ensemble n&#39;est pas évidente et je propose une construction facile. D&#39;abord, chaque \(x\in[0,1]\) peut s&#39;écrire en binaire \(0,x_1x_2x_3\dotsc\) où \(x_i \in \{0,1\}\). On pose</p>
+\[ S(x) = \sum_{n=1}^\infty \frac{(-1)^{x_n}}{n}.\]
+<p>Il se trouve que</p>
+<ol>
+<li><p>cette fonction est mesurable, </p>
+</li>
+<li><p>pour \(\lambda\)-presque tout \(x\), cette somme est finie, </p>
+</li>
+<li><p>les ensembles \(\{S>a\}\) ont bien la propriété demandée, quel que soit \(a\). </p>
+</li>
+</ol>
+<p>Évidemment, c&#39;est surtout le point 3 qui est difficile à démontrer, ce qu&#39;on considérera donc comme un bon exercice &#40;difficile&#41;. Accessoirement, le point 2 peut être vérifié de façon probabiliste : en effet, si \(x\) est une variable aléatoire uniforme sur \([0,1]\), alors il est facile de voir que \(x_n\) est une variable de Rademacher &#40;elle prend les valeurs \(\pm 1\) avec probabilité \(1/2\)&#41;. Il n&#39;est alors plus très difficile de vérifier, par exemple, que \(S\) est une variable aléatoire \(L^2\), donc finie presque sûrement.</p>
+<h2 id="sur_le_volume_des_sphères_on_refait_les_calculs_vus_en_td"><a href="#sur_le_volume_des_sphères_on_refait_les_calculs_vus_en_td" class="header-anchor">Sur le volume des sphères &#40;on refait les calculs vus en TD&#41;</a></h2>
+<p>Aujourd&#39;hui, lundi 3 octobre, nous avons utilisé le théorème de Fubini à de multiples reprises pour calculer le volume &#40;&#61; la mesure de Lebesgue&#41; de la boule unité en toute dimension : </p>
+\[ B_n(r) = \{(x_1, \dotsc, x_n) : \sqrt{\sum_{i=1}^n |x_i|^n} \leqslant r\}.\]
+<p>Nous avons vu que l&#39;homogénéité de la mesure de Lebesgue implique que</p>
+\[ \lambda(B_n(r)) = r^n \lambda(B_n(1))\]
+<p>et nous avons montré que</p>
+<div class="important">\[ \lambda(B_n(1)) = \frac{\pi^{n/2}}{\Gamma\left(\frac{n}{2}+1\right)}\]</div>
+<p>En fait nous avons démontré une formule équivalente à celle-ci. </p>
+<h3 id="calcul"><a href="#calcul" class="header-anchor">Calcul</a></h3>
+<p>Les grandes lignes de la démonstration qu&#39;on a vue en TD sont les suivantes : </p>
+<ol>
+<li><p>En utilisant le théorème de Fubini pour intégrer seulement sur la variable \(x_{n+1}\), on a </p>
+</li>
+</ol>
+\[ \lambda(B_{n+1}(1)) = \lambda(B_n(1))\int_{-1}^1 (1 - x^2)^{n/2}dx.\]
+<ol start="2">
+<li><p>En utilisant de judicieux changements de variables, on a </p>
+</li>
+</ol>
+\[\int_{-1}^1 (1 - x^2)^{n/2}dx = \beta(n/2, 1/2)\]
+<p>où \(\beta\) désigne la célèbre <a href="https://fr.wikipedia.org/wiki/Fonction_b&#37;C3&#37;AAta">fonction Bêta</a>, définie par \(\beta(x,y) = \int_0^1 (1-u)^{x-1}u^{y-1}du\). Cette fonction vérifie en outre la belle identité </p>
+\[ \beta(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}\]
+<p>dûe à Euler, et démontrable par un habile changement de variables. </p>
+<ol start="3">
+<li><p>On obtient donc la formule de récurrence suivante : </p>
+</li>
+</ol>
+\[\lambda(B_{n+1}(1)) = \lambda(B_n(1))\times \frac{\Gamma\left(\frac{n}{2}+1\right)\Gamma(1/2)}{\Gamma\left(\frac{n+1}{2}+1\right)} \]
+<p>laquelle se résout par récurrence, permettant d&#39;obtenir</p>
+\[ \lambda(B_{n+1}(1)) = \lambda(B_1(1))\times \prod_{i=1}^n\frac{\Gamma(1/2)^n\Gamma(n/2 + 1)}{\Gamma((n+1)/2 + 1)} = \frac{\Gamma(1/2)^n}{\Gamma\left(\frac{n+1}{2}+1\right)}\]
+<p>puisque les termes du produit se téléscopent facilement. Il ne reste plus qu&#39;à utiliser la formule &#40;déjà vue en exercice&#41; \(\Gamma(1/2) = \sqrt{\pi}\). </p>
+<p>Il existe d&#39;autres démonstrations.</p>
+<h3 id="remarques"><a href="#remarques" class="header-anchor">Remarques </a></h3>
+<p>Il y a plusieurs choses à dire sur cet exercice. </p>
+<p><em>Premièrement</em>, le volume de la sphère unité tend très vite vers zéro &#40;utiliser la formule de Stirling&#41;. Son maximum est atteint en \(n=5\) ; le volume de la boule unité en dimension 5 est égal à \(8\pi^2 / 15 \approx 5,624\), c&#39;est un peu étonnant &#40;je ne sais pas ce que la dimension 5 a de particulier&#41;, mais c&#39;est comme ça. Un très bon exercice consiste à essayer de démontrer que ce volume tend vers zéro lorsque la dimension tend vers l&#39;infini, sans passer par le calcul exact. Mon ami Mi-Song m&#39;indique d&#39;ailleurs une bonne intuition sur ce phénomène : le volume du cube unité en dimension \(n\) &#40;c&#39;est-à-dire les points dont toutes les coordonnées sont comprisese ntre 0 et 1&#41; est égale à 1, c&#39;est évident; or, son diamètre &#40;la plus grande longueur séparant deux points contenus dans le cube&#41;  est égal à \(\sqrt{n}\), qui tend vers l&#39;infini. La boule unité possède un diamètre constant, pas étonnant que son volume tende vers zéro &#40;attention, ceci n&#39;est pas une preuve&#41;. </p>
+<p><em>Deuxièmement</em>, un calcul parfaitement équivalent à celui fait plus haut permet de calculer le volume de la boule \(L^p\), c&#39;est-à-dire</p>
+\[ B_n^p(r) = \{ (x_1, \dotsc, x_n) \in \mathbb{R}^n : |x|_p \leqslant r\}\]
+<p>où \(|x|_p = (|x_1|^p + \dotsb + |x_n|^p)^{1/p}\). Le calcul donne</p>
+\[\lambda(B_n^p(r)) = r^n \frac{\left(2\Gamma\left(\frac{1}{p}+1\right)\right)^n}{\Gamma\left(\frac{n}{p}+1\right)}.\]
+<p><em>Troisèmement</em>, un <a href="http://sites.mathdoc.fr/JMPA/PDF/JMPA_1839_1_4_A11_0.pdf">article de Dirichlet lui-même</a> &#40;en français&#41;, daté de 1839, fait le calcul encore plus général suivant : si l&#39;on note</p>
+\[A_{p_1, \dotsc, p_n} = \{x \in \mathbb{R}^n, \sum_{i=1}^n |x_i|^{p_i} \leqslant 1 \}\]
+<p>alors </p>
+\[\lambda(A_{p_1, \dotsc, p_n}) = \frac{2^n \prod_{i=1}^n\Gamma\left(\frac{1}{p_i} + 1\right)}{\Gamma\left(\frac{1}{p_1} + \dotsb + \frac{1}{p_n}+1\right)}.\]
+<p>C&#39;est un calcul qui est parfaitement faisable et qui pourra, par exemple, faire l&#39;objet d&#39;une interrogation. </p>
+<h2 id="petit_point_de_notation"><a href="#petit_point_de_notation" class="header-anchor">Petit point de notation</a></h2>
+<p>La fonction de répartition d&#39;une variable aléatoire réelle \(X\) est la fonction croissante \(F\) définie par</p>
+\[ F(t) = \mathbb{P}(X \leqslant t).\]
+<p>Attention : si l&#39;on voulait étudier la variable aléatoire \(F(X)\), on pourrait être tenté d&#39;écrire</p>
+\[F(X) = \mathbb{P}(X \leqslant X) = 1\]
+<p>ce qui est évidemment très faux – c&#39;est un abus de notation. </p>
+<p>Pour que les choses soient claires et justes, il vaut mieux noter \(\mu\) la loi de probabilité de \(X\) et écrire \(F(t) = \mu(]-\infty, t])\) et ainsi, </p>
+\[F(X)(\omega) = \mu(]-\infty, X(\omega)]).\]
+<h2 id="exercice_sur_les_lois_conditionnelles"><a href="#exercice_sur_les_lois_conditionnelles" class="header-anchor">Exercice sur les lois conditionnelles</a></h2>
+<p>Nous avons vu en exercice de nombreux exemples de variables aléatoires \(X,Y\), positives, indépendantes, \(L^1\), pour lesquelles </p>
+\[ \mathbb{E}[X | X+Y] = \frac{\alpha}{\alpha + \beta}(X+Y)\]
+<p>où \(\alpha = \mathbb{E}[X], \beta = \mathbb{E}[Y]\). Par exemple, lorsque \(X,Y\) sont des lois de Poisson, ou des lois Gammas avec même paramètre de taux \(\lambda\), etc. C&#39;est essentiellement le contenu de l&#39;exercice 4 de la feuille 6.</p>
+<p>Est-ce toujours vrai ? Existe-t-il des variables aléatoires \(X,Y\) telles que la relation ci-dessus n&#39;est pas valable ?</p>
+<h2 id="un_corrigé_de_lexercice_4_du_td_7"><a href="#un_corrigé_de_lexercice_4_du_td_7" class="header-anchor"> Un corrigé de l&#39;exercice 4 du TD 7</a></h2>
+<p>On rappelle que </p>
+\[\alpha = \inf \{t \in \mathbb{R} : \mathbb{P}(X \leqslant t) > 0 \}.\]
+<p>On suppose que \(\alpha\) n&#39;est pas égal à \(-\infty\), c&#39;est le seul cas que je corrigerai. </p>
+<p>Soit \(u<\alpha\). Par définition de \(\alpha\), on a \(\mathbb{P}(X \leqslant u) = 0\). On en déduit que </p>
+\[ \mathbb{P}(\exists n, X_n \leqslant u) = \mathbb{P}\left(\cup_n \{X_n \leqslant u\}\right) \leqslant \sum_{n=1}^\infty \mathbb{P}(X_n \leqslant u) = 0. \]
+<p>On pose \(A_u = \cap_n \{X_n > u\}\); par ce qui vient d&#39;être dit, \(\mathbb{P}(A_u) = 1\). Soit \(\omega \in A_u\). Comme \(X_n(\omega)>u\) pour tout \(n\), on a \(\inf_{k\geqslant n}X_k(\omega) \geqslant u\), et donc \(\sup_n \inf_{k\geqslant n}X_k(\omega) \geqslant u\), c&#39;est-à-dire \(\liminf X_k(\omega) \geqslant u\). On a démontré que : </p>
+<div class="important">\(\forall u < \alpha\), \(\mathbb{P}(A_u)=1\) et \(\forall \omega \in A_u, \liminf X_k \geqslant u\).</div>
+<p>Maintenant, soit \(v>\alpha\). Si l&#39;on avait \(\mathbb{P}(X\leqslant v) = 0\), alors on aurait aussi \(\mathbb{P}(X \leqslant t) = 0\) pour tout \(t \leqslant v\), par croissance de \(t\mapsto \mathbb{P}(X \leqslant t)\). Mais alors, par définition de \(\alpha\), on devrait avoir \(\alpha \geqslant v\), une contradiction. On en déduit que \(\mathbb{P}(X \leqslant v)>0\). Ainsi, </p>
+\[\sum_{n=1}^\infty \mathbb{P}(X_n \leqslant v)= +\infty, \]
+<p>et par le second lemme de Borel-Cantelli &#40;les \(X_n\) étant indépendantes&#41;, on a \(\mathbb{P}(\limsup \{X_n \leqslant v\})=1\). Notons \(B_v =  \limsup \{X_n \leqslant v\}\). Pour tout \(\omega \in B_v\), on a: </p>
+\[\begin{aligned} \omega \in \bigcap_{n \geqslant 1} \bigcup_{k\geqslant n}\{X_k \leqslant v\} & \Leftrightarrow \forall n \geqslant 1, \exists k \geqslant n, X_k(\omega) \leqslant v\\
+& \Rightarrow \forall n \geqslant 1, \inf_{k\geqslant n} X_k(\omega) \leqslant v \\
+& \Rightarrow \sup_{n\geqslant 1}\inf_{k\geqslant n}X_k(\omega) \leqslant v
+\end{aligned}\]
+<p>et donc, \(\omega \in B_v\) entraîne que \(\liminf X_k(\omega) \leqslant v\). Attention, comme dûment remarqué en classe par de nombreuses personnes, <strong>ce n&#39;est pas une équivalence</strong> &#40;plus précisément, le passage de la première ligne à la seconde n&#39;est pas une équivalence&#41;. J&#39;adresse donc à la classe mes plus plates excuses pour cet embrouillamini. Bon an, mal an, nous avons démontré que </p>
+<div class="important">\(\forall v > \alpha, \mathbb{P}(B_v) = 1\) et \(\forall \omega \in B_v, \liminf X_k (\omega) \leqslant v\).</div>
+<p>On pose finalement </p>
+\[\mathscr{E} = \cap_{\ell = 1}^\infty (A_{\alpha - 1/\ell} \cap B_{\alpha + 1/\ell}).\]
+<p>Cet événement est une intersection dénombrable d&#39;ensembles de probabilité 1, donc \(\mathbb{P}(\mathscr{E})=1\). De plus, soit \(\omega \in \mathscr{E}\). Comme \(\omega\) est dans \(A_{\alpha-1/\ell}\) et dans \(B_{\alpha +1/\ell}\), on a </p>
+\[ \alpha - \frac{1}{\ell}\leqslant \liminf X_k(\omega) \leqslant \alpha + \frac{1}{\ell} \]
+<p>et ceci est valable pour tout \(\ell\), donc on a bien \(\liminf X_k(\omega) = \alpha\). </p>
+<!-- 
+  Page footer is in the sidebar. 
+ --></div><!-- CONTENT ENDS HERE -->
+    </div>  <!-- div: content container -->
+    
+        <script src="/libs/katex/katex.min.js"></script>
+<script src="/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+        <script src="/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
+    
+  </body>
+</html>
