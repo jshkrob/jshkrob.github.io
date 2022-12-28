@@ -1,4 +1,4 @@
-@def title = "Simon Coste"
+@def title = "Jacob Shkrob"
 @def tags = ["syntax", "code"]
 
 # Blog
