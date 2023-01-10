@@ -2,13 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-    <loc>jshkrob.github.io\404\index.html</loc>
+    <loc>jshkrob.github.io\research\index.html</loc>
     <lastmod>2022-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>jshkrob.github.io\other\statagreg\index.html</loc>
+    <loc>jshkrob.github.io\notes\index.html</loc>
+    <lastmod>2023-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>jshkrob.github.io\other\index.html</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>jshkrob.github.io\other\proba\index.html</loc>
+    <lastmod>2022-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>jshkrob.github.io\404\index.html</loc>
     <lastmod>2022-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -20,50 +38,14 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>jshkrob.github.io\posts\convmixer\index.html</loc>
-    <lastmod>2022-12-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>jshkrob.github.io\research\index.html</loc>
-    <lastmod>2022-12-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>jshkrob.github.io\other\proba\index.html</loc>
+    <loc>jshkrob.github.io\other\statagreg\index.html</loc>
     <lastmod>2022-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>jshkrob.github.io\posts\derp\index.html</loc>
-    <lastmod>2022-12-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>jshkrob.github.io\notes\index.html</loc>
-    <lastmod>2023-01-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>jshkrob.github.io\other\index.html</loc>
-    <lastmod>2023-01-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>jshkrob.github.io\posts\post2\index.html</loc>
-    <lastmod>2022-12-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>jshkrob.github.io\posts\post1\index.html</loc>
-    <lastmod>2022-12-26</lastmod>
+    <lastmod>2023-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
