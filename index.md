@@ -4,7 +4,7 @@
 # About
 ![Jacob Shkrob Profile](/assets/profile.jpg)
 
- Hello/Bonjour/Привет! I am a first year PhD student at [NYU Courant](https://math.nyu.edu/dynamic/) studying mainly probability, stochastic analysis, partial differential equations, and applications to biology and machine learning. I did my undergraduate degree in Probability and Statistics at [McGill University](https://www.mcgill.ca/) under the supervision of [Jessica Lin](https://sites.google.com/view/jessicalin-math/home) studying Random Walk in Random Environment and connections to stochastic homogenization. 
+ Hello/Bonjour/Привет! I am a seoond year PhD student at [NYU Courant](https://math.nyu.edu/dynamic/) studying mainly probability, stochastic analysis, partial differential equations, and applications to biology and machine learning. I did my undergraduate degree in Probability and Statistics at [McGill University](https://www.mcgill.ca/) under the supervision of [Jessica Lin](https://sites.google.com/view/jessicalin-math/home) studying Random Walk in Random Environment and connections to stochastic homogenization. Right now I am interested in high-dimensional phenomenon in probability and geometry related to stochastic localization, as well as the theory of optimal transport, gradient flows, and mean-field interacting particle systems. 
 
 [GitHub](https://github.com/jshkrob), [ArXiv](https://arxiv.org/search/?query=Jacob+Shkrob&source=header&searchtype=all), [LinkedIn](https://www.linkedin.com/in/jacob-shkrob-78a192167/)
 
